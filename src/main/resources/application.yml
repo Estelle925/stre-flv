@@ -1,0 +1,21 @@
+spring:
+  profiles:
+    active: dev
+  redis:
+    host: 47.99.96.80
+    port: 6379
+    password: redis_8kcpSj
+    database: 8
+    timeout: 10s
+    lettuce:
+      pool:
+        min-idle: 0
+        max-idle: 8
+        max-active: 8
+        max-wait: -1ms
+server:
+  port: 8040
+
+rtsp:
+  streams:
+    camera1.flv: rtsp://admin:hkws12345@192.168.110.239/cam/realmonitor?channel=1&subtype=0
