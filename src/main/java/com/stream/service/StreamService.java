@@ -38,8 +38,6 @@ public class StreamService {
     @Resource
     private StringRedisTemplate stringRedisTemplate;
 
-    @Resource
-    private ConfigSyncService configSyncService;
 
     private static final String REDIS_STREAM_KEY_PREFIX = "rtsp:stream:";
 
@@ -180,9 +178,6 @@ public class StreamService {
         // 更新内存中的配置
         rtspProperties.getStreams().put(flvPath, rtspUrl);
         
-        // 更新yml文件
-        configSyncService.updateYmlFile(rtspProperties.getStreams());
-        
         log.info("添加新的流配置成功 - FLV路径: {}, RTSP地址: {}", flvPath, rtspUrl);
     }
 
@@ -226,9 +221,6 @@ public class StreamService {
         
         // 从内存配置中删除
         rtspProperties.getStreams().remove(flvPath);
-        
-        // 更新yml文件
-        configSyncService.updateYmlFile(rtspProperties.getStreams());
         
         log.info("删除流配置成功 - FLV路径: {}", flvPath);
     }
